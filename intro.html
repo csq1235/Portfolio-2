@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈思琪 · PORTFOLIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-1:#FFF7D6; --bg-2:#FFE9A8; --bg:#FFFBEB;
+  --accent:#E79B14; --accent-2:#FFA62B; --accent-dark:#CF6C1B;
+  --gold:#ECBB1A; --gold-2:#F2D229; --gold-3:#EFDB6A;
+  --deep-blue:#2E5AA7; --light-blue:#86C5FF;
+  --txt:#3A2E20; --txt-2:#5C4B36; --txt-3:#8A7A65;
+  --ff:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:var(--ff);color:var(--txt);
+  background:linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 100%);
+  position:relative;
+}
+
+/* Radial glow overlay */
+.glow-bg{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 35%,rgba(255,210,80,.35),transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 80%,rgba(255,166,43,.15),transparent 70%),
+    radial-gradient(ellipse 40% 30% at 15% 75%,rgba(134,197,255,.12),transparent 70%);
+  pointer-events:none;
+}
+
+/* ===== Intro Overlay ===== */
+.intro{
+  position:fixed;inset:0;z-index:100;
+  overflow:hidden;
+  transition:opacity .8s ease,transform .8s ease;
+}
+.intro.exiting{
+  opacity:0;
+  transform:scale(1.08);
+  pointer-events:none;
+}
+
+/* Main stage - vertical centered stack */
+.stage{
+  position:relative;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;
+  perspective:1200px;
+}
+
+/* PORTFOLIO text - upper area, horizontally centered */
+.portfolio-text{
+  position:absolute;
+  top:12%;left:50%;
+  transform:translateX(-50%) scale(0.3);
+  font-size:clamp(4rem,16vw,13rem);
+  font-weight:900;
+  color:var(--accent);
+  letter-spacing:-.04em;
+  white-space:nowrap;
+  z-index:1;
+  opacity:0;
+  text-shadow:0 4px 30px rgba(231,155,20,.25);
+  animation:portfolioBounce 1.2s cubic-bezier(.68,-.55,.265,1.55) forwards;
+  animation-delay:3.8s;
+}
+
+@keyframes portfolioBounce{
+  0%{transform:translateX(-50%) scale(0.3);opacity:0;}
+  15%{opacity:1;}
+  40%{transform:translateX(-50%) scale(1.18);opacity:1;}
+  55%{transform:translateX(-50%) scale(0.92);}
+  75%{transform:translateX(-50%) scale(1.04);}
+  100%{transform:translateX(-50%) scale(1);opacity:1;}
+}
+
+/* Props group - horizontal row, centered, below PORTFOLIO text */
+.props-row{
+  position:absolute;
+  top:30%;left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:flex-end;
+  gap:clamp(8px,1.2vw,14px);
+  z-index:2;
+}
+.prop{
+  opacity:0;
+  pointer-events:none;
+}
+.prop svg{width:100%;height:100%;display:block;}
+
+.prop-1{
+  width:clamp(44px,5.5vw,64px);
+  transform:translateY(60px) scale(0.15) rotate(-8deg);
+  animation:propBounce1 1.2s cubic-bezier(.68,-.55,.265,1.55) forwards,
+            propFloat1 3.5s ease-in-out infinite;
+  animation-delay:1.8s,3.0s;
+}
+.prop-2{
+  width:clamp(52px,7vw,80px);
+  transform:translateY(60px) scale(0.15) rotate(-8deg);
+  animation:propBounce2 1.2s cubic-bezier(.68,-.55,.265,1.55) forwards,
+            propFloat2 3.5s ease-in-out infinite;
+  animation-delay:2.1s,3.3s;
+}
+.prop-3{
+  width:clamp(48px,6vw,72px);
+  transform:translateY(60px) scale(0.15) rotate(-8deg);
+  animation:propBounce3 1.2s cubic-bezier(.68,-.55,.265,1.55) forwards,
+            propFloat3 3.5s ease-in-out infinite;
+  animation-delay:2.4s,3.6s;
+}
+
+@keyframes propBounce1{
+  0%{transform:translateY(60px) scale(0.15) rotate(-8deg);opacity:0;}
+  15%{opacity:1;}
+  40%{transform:translateY(-15px) scale(1.1) rotate(3deg);}
+  60%{transform:translateY(5px) scale(0.95) rotate(-2deg);}
+  80%{transform:translateY(-3px) scale(1.02) rotate(1deg);}
+  100%{transform:translateY(0) scale(1) rotate(0deg);opacity:1;}
+}
+@keyframes propBounce2{
+  0%{transform:translateY(60px) scale(0.15) rotate(-8deg);opacity:0;}
+  15%{opacity:1;}
+  40%{transform:translateY(-12px) scale(1.12) rotate(-3deg);}
+  60%{transform:translateY(6px) scale(0.93) rotate(2deg);}
+  80%{transform:translateY(-2px) scale(1.03) rotate(-1deg);}
+  100%{transform:translateY(0) scale(1) rotate(0deg);opacity:1;}
+}
+@keyframes propBounce3{
+  0%{transform:translateY(60px) scale(0.15) rotate(-8deg);opacity:0;}
+  15%{opacity:1;}
+  40%{transform:translateY(-18px) scale(1.15) rotate(4deg);}
+  60%{transform:translateY(7px) scale(0.92) rotate(-2deg);}
+  80%{transform:translateY(-4px) scale(1.02) rotate(1deg);}
+  100%{transform:translateY(0) scale(1) rotate(0deg);opacity:1;}
+}
+
+@keyframes propFloat1{
+  0%,100%{transform:translateY(0) scale(1) rotate(0deg);}
+  50%{transform:translateY(-10px) scale(1) rotate(3deg);}
+}
+@keyframes propFloat2{
+  0%,100%{transform:translateY(0) scale(1) rotate(0deg);}
+  50%{transform:translateY(-8px) scale(1) rotate(-4deg);}
+}
+@keyframes propFloat3{
+  0%,100%{transform:translateY(0) scale(1) rotate(0deg);}
+  50%{transform:translateY(-12px) scale(1) rotate(2deg);}
+}
+
+/* Person image - top at 36%, extends to very bottom, covers props bottom */
+.person-wrap{
+  position:absolute;
+  top:36%;left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  pointer-events:none;
+  bottom:0;
+}
+.person-img{
+  height:calc(100vh - 36vh);
+  width:auto;
+  max-width:none;
+  transform-origin:top center;
+  transform:translateX(0) scaleY(0.15) rotateX(40deg);
+  opacity:0;
+  animation:personUnfold 1.6s cubic-bezier(.34,1.1,.64,1) forwards;
+  animation-delay:.3s;
+  filter:drop-shadow(0 20px 40px rgba(231,155,20,.2));
+  display:block;
+}
+@keyframes personUnfold{
+  0%{transform:translateX(0) scaleY(0.15) rotateX(40deg);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateX(0) scaleY(1) rotateX(0deg);opacity:1;}
+}
+
+/* Enter button - bottom center, overlaid on person's chest */
+.enter-btn{
+  position:absolute;
+  bottom:12%;left:50%;
+  transform:translateX(-50%) scale(0.3);
+  opacity:0;
+  padding:16px 48px;
+  background:linear-gradient(135deg,var(--accent),var(--gold));
+  color:#fff;
+  font-weight:700;font-size:16px;
+  border-radius:50px;
+  border:none;cursor:pointer;
+  box-shadow:0 10px 30px rgba(231,155,20,.35);
+  z-index:5;
+  letter-spacing:2px;
+  overflow:hidden;
+  animation:btnBounce .8s cubic-bezier(.68,-.55,.265,1.55) forwards;
+  animation-delay:5.2s;
+}
+.enter-btn::before{
+  content:'';
+  position:absolute;top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
+  transition:left .6s ease;
+}
+.enter-btn:hover{
+  transform:translateX(-50%) translateY(-4px) scale(1.05);
+  box-shadow:0 16px 40px rgba(231,155,20,.45);
+}
+.enter-btn:hover::before{left:100%;}
+
+@keyframes btnBounce{
+  0%{transform:translateX(-50%) scale(0.3);opacity:0;}
+  20%{opacity:1;}
+  50%{transform:translateX(-50%) scale(1.15);}
+  70%{transform:translateX(-50%) scale(0.95);}
+  85%{transform:translateX(-50%) scale(1.03);}
+  100%{transform:translateX(-50%) scale(1);opacity:1;}
+}
+
+/* Click to enter hint */
+.click-hint{
+  position:absolute;
+  bottom:5%;left:50%;
+  transform:translateX(-50%);
+  font-size:13px;font-weight:500;
+  color:var(--txt-3);
+  letter-spacing:3px;text-transform:uppercase;
+  opacity:0;
+  animation:hintPulse 2.5s ease-in-out infinite;
+  animation-delay:6.2s;
+  z-index:5;
+}
+@keyframes hintPulse{
+  0%{opacity:0;transform:translateX(-50%) translateY(8px);}
+  20%{opacity:.7;}
+  50%{opacity:1;transform:translateX(-50%) translateY(0);}
+  80%{opacity:.7;}
+  100%{opacity:0;transform:translateX(-50%) translateY(-4px);}
+}
+
+/* Social links */
+.social-links{
+  position:absolute;
+  bottom:32px;right:40px;
+  display:flex;gap:14px;
+  opacity:0;
+  animation:fadeIn .8s ease forwards;
+  animation-delay:6s;
+  z-index:10;
+}
+.social-link{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.6);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--txt);
+  transition:all .3s ease;
+  cursor:pointer;
+}
+.social-link:hover{
+  background:var(--accent);
+  transform:translateY(-3px) scale(1.1);
+  box-shadow:0 8px 20px rgba(231,155,20,.3);
+}
+
+/* Particles */
+.particle{
+  position:absolute;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);
+  opacity:0;
+  z-index:1;
+  animation:gentleFloat 4s ease-in-out infinite,fadeIn .6s ease forwards;
+  animation-delay:var(--p-delay),var(--p-delay);
+}
+.particle:nth-child(2n){background:var(--accent-2);width:6px;height:6px;}
+.particle:nth-child(3n){background:var(--light-blue);width:10px;height:10px;}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@keyframes gentleFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(var(--p-tx),var(--p-ty)) scale(1.2);}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .portfolio-text{top:10%;}
+  .props-row{top:28%;}
+  .person-wrap{top:38%;}
+  .person-img{height:calc(100vh - 38vh);}
+  .enter-btn{padding:14px 36px;font-size:14px;bottom:10%;}
+  .social-links{bottom:20px;right:20px;gap:10px;}
+  .social-link{width:36px;height:36px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Background glow -->
+<div class="glow-bg"></div>
+
+<!-- Intro overlay -->
+<div class="intro" id="intro">
+
+  <!-- Stage -->
+  <div class="stage">
+
+    <!-- Particles -->
+    <div class="particle" style="top:15%;left:18%;--p-tx:12px;--p-ty:-15px;--p-delay:0.5s;"></div>
+    <div class="particle" style="top:25%;right:15%;--p-tx:-10px;--p-ty:12px;--p-delay:0.8s;"></div>
+    <div class="particle" style="bottom:30%;left:10%;--p-tx:15px;--p-ty:-8px;--p-delay:1.1s;"></div>
+    <div class="particle" style="bottom:20%;right:12%;--p-tx:-12px;--p-ty:-14px;--p-delay:1.4s;"></div>
+    <div class="particle" style="top:45%;left:8%;--p-tx:10px;--p-ty:10px;--p-delay:1.7s;"></div>
+    <div class="particle" style="top:55%;right:8%;--p-tx:-14px;--p-ty:8px;--p-delay:2.0s;"></div>
+
+    <!-- PORTFOLIO Text -->
+    <div class="portfolio-text">PORTFOLIO</div>
+
+    <!-- Props row: pen + camera + video player, horizontal group -->
+    <div class="props-row">
+      <!-- Prop 1: Pen -->
+      <div class="prop prop-1">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 48L8 56L12 60L20 52L16 48Z" fill="#E79B14"/>
+          <path d="M16 48L44 20L52 28L24 56L16 48Z" fill="#FFB96B" stroke="#E79B14" stroke-width="2"/>
+          <path d="M44 20L48 16L52 20L56 16L48 8L44 16L44 20Z" fill="#E79B14"/>
+          <path d="M44 20L48 16L52 20" stroke="#CF6C1B" stroke-width="1.5" fill="none"/>
+          <path d="M20 44L24 48" stroke="#CF6C1B" stroke-width="1.5"/>
+          <circle cx="50" cy="14" r="2" fill="#ECBB1A"/>
+        </svg>
+      </div>
+
+      <!-- Prop 2: Camera -->
+      <div class="prop prop-2">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="20" width="52" height="36" rx="6" fill="#2E5AA7" stroke="#1a3d7a" stroke-width="2"/>
+          <path d="M22 20L24 12H40L42 20" stroke="#1a3d7a" stroke-width="2" fill="#3D6BB8"/>
+          <circle cx="32" cy="38" r="11" fill="#1a3d7a" stroke="#86C5FF" stroke-width="2"/>
+          <circle cx="32" cy="38" r="7" fill="#86C5FF"/>
+          <circle cx="32" cy="38" r="3.5" fill="#2E5AA7"/>
+          <circle cx="30" cy="36" r="1.5" fill="#fff" opacity="0.8"/>
+          <rect x="48" y="24" width="6" height="4" rx="1" fill="#ECBB1A"/>
+          <rect x="10" y="24" width="4" height="3" rx="1" fill="#FFA62B"/>
+        </svg>
+      </div>
+
+      <!-- Prop 3: Video player -->
+      <div class="prop prop-3">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="12" width="56" height="40" rx="8" fill="#FFA62B" stroke="#E79B14" stroke-width="2"/>
+          <rect x="4" y="12" width="56" height="40" rx="8" fill="url(#vg)" opacity="0.3"/>
+          <defs>
+            <linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFD980"/>
+              <stop offset="1" stop-color="#E79B14"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="12" fill="#fff" opacity="0.95"/>
+          <path d="M28 26L38 32L28 38Z" fill="#E79B14"/>
+          <rect x="20" y="56" width="24" height="4" rx="2" fill="#CF6C1B"/>
+          <rect x="24" y="54" width="16" height="2" rx="1" fill="#E79B14"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Person image -->
+    <div class="person-wrap">
+      <img src="images/torn-person.png" alt="陈思琪" class="person-img" id="personImg">
+    </div>
+
+    <!-- Enter button -->
+    <button class="enter-btn" id="enterBtn">点击进入</button>
+
+    <!-- Click hint -->
+    <div class="click-hint">click to enter</div>
+
+    <!-- Social links -->
+    <div class="social-links">
+      <div class="social-link" title="微信">
+        <img src="images/wechat-icon.png" alt="微信" width="28" height="28">
+      </div>
+      <div class="social-link" title="QQ邮箱">
+        <img src="images/qqmail-icon.png" alt="QQ邮箱" width="28" height="28">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const intro = document.getElementById('intro');
+const enterBtn = document.getElementById('enterBtn');
+let canEnter = false;
+let isExiting = false;
+
+// Enable click after 6.3s
+setTimeout(() => {
+  canEnter = true;
+}, 6300);
+
+function doEnter(){
+  if(!canEnter || isExiting) return;
+  isExiting = true;
+  intro.classList.add('exiting');
+  // Preload index.html by fetching it, then navigate for instant transition
+  fetch('index.html').then(() => {
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 400);
+  }).catch(() => {
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 400);
+  });
+}
+
+// Preload index.html in background
+const preloadLink = document.createElement('link');
+preloadLink.rel = 'prefetch';
+preloadLink.href = 'index.html';
+document.head.appendChild(preloadLink);
+
+// Click enter button
+enterBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  doEnter();
+});
+
+// Click anywhere after 6.3s
+document.addEventListener('click', () => {
+  doEnter();
+});
+
+// Prevent click during animation phase
+document.addEventListener('click', (e) => {
+  if(!canEnter){
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true);
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+  if((e.key === 'Enter' || e.key === ' ') && canEnter){
+    e.preventDefault();
+    doEnter();
+  }
+});
+</script>
+
+</body>
+</html>
